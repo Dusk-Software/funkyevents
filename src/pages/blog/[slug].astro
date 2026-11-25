@@ -1,0 +1,26 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog', ({ data }) => !data.draft);
+	return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BaseLayout
+	title={`${post.data.title} | The Gathering Guide`}
+	description={post.data.description}
+	currentPath="/blog/"
+>
+	<article class="article">
+		<p class="article__meta">{post.data.category} &nbsp;·&nbsp; {post.data.readTime} &nbsp;·&nbsp; {post.data.publishedAt.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+		<h1>{post.data.title}</h1>
+		<p class="article__intro">{post.data.description}</p>
+		<div class="article__body"><Content /></div>
+		<div class="article__footer"><a class="text-link" href="/contact/">Planning something of your own? <span aria-hidden="true">↗</span></a></div>
+	</article>
+</BaseLayout>

@@ -1,0 +1,114 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GalleryGrid from '../components/GalleryGrid.astro';
+import QuoteCard from '../components/QuoteCard.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import { galleryItems, heroImage, processSteps, services, testimonials } from '../data/site';
+---
+
+<BaseLayout
+	title="Funky Events | Event Planning, Decor & Party Rentals"
+	description="Meet Funky Events, led by Josephine Ishioye. Rhode Island event planning, decorations, and party rentals for weddings and life's loveliest celebrations."
+	currentPath="/"
+>
+	<section class="hero">
+		<div class="hero__photo">
+			<Image
+				src={heroImage}
+				alt="Indoor reception table dressed with white flowers and green foliage"
+				class="hero__image"
+				width={2200}
+				height={1200}
+				format="webp"
+				quality={82}
+				fetchpriority="high"
+			/>
+		</div>
+		<div class="hero__copy">
+			<p class="eyebrow">Good things happen when we gather</p>
+			<h1>Events that feel like <em>you.</em></h1>
+			<p class="hero__intro">Event decoration, planning, and party rentals for celebrations across Rhode Island and surrounding areas.</p>
+			<div class="hero__actions">
+				<a class="button" href="/contact/">Contact Josephine <span aria-hidden="true">↗</span></a>
+				<a class="button button--outline" href="/services/">Explore our services</a>
+			</div>
+		</div>
+		<p class="hero__index">Rhode Island & Surrounding Areas <span>· Decor · Rentals · Events</span></p>
+	</section>
+
+	<div class="intro-strip" aria-label="Events we plan">
+		<span>Thoughtful by design</span><span>From first hello to final toast</span><span>Big feelings, beautifully handled</span>
+	</div>
+
+	<section class="section section--cream">
+		<SectionHeading
+			align="left"
+			eyebrow="Gather for a reason"
+			title="Every occasion, with its own kind of magic."
+			text="The best celebrations feel like you. We bring the care, creativity, and calm planning that let your people—and your moment—shine."
+		/>
+		<div class="service-grid service-grid--featured">
+			{services.slice(0, 3).map((service) => <ServiceCard service={service} />)}
+		</div>
+		<div class="section-cta"><a class="button button--outline" href="/services/">Explore all event types <span aria-hidden="true">↗</span></a></div>
+	</section>
+
+	<section class="section">
+		<div class="story-grid">
+			<div class="story-image">
+				<Image src={galleryItems[2].image} alt={galleryItems[2].alt} width={900} height={1100} format="webp" quality={80} loading="lazy" />
+				<div class="story-image__stamp">It’s the feeling<br />that stays.</div>
+			</div>
+			<div class="story-copy">
+				<p class="eyebrow">A little about us</p>
+				<h2>Beautifully considered.<br /><em>Entirely yours.</em></h2>
+				<p>At Funky Events, we believe the best celebrations aren’t just lovely to look at—they feel like the people at the heart of them.</p>
+				<p>We bring thoughtful planning, an easy sense of style, and a steady hand to the details, so you can spend less time managing and more time being there.</p>
+				<a class="text-link" href="/about/">Get to know Funky Events <span aria-hidden="true">↗</span></a>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--cream">
+		<SectionHeading
+			align="left"
+			eyebrow="A few favorite moments"
+			title="A feeling worth coming back to."
+			text="A little glimpse of the gatherings, details, and happy in-between moments we love bringing to life."
+		/>
+		<GalleryGrid items={galleryItems.slice(0, 4)} />
+		<div class="section-cta"><a class="button button--outline" href="/gallery/">Wander through the gallery <span aria-hidden="true">↗</span></a></div>
+	</section>
+
+	<section class="section section--dark">
+		<SectionHeading align="left" eyebrow="A good plan feels like this" title="Here for all of it." text="A thoughtful process gives the good ideas room to grow—and the little details a place to land." />
+		<div class="process-grid">
+			{processSteps.map((step) => (
+				<article class="process-step">
+					<span class="process-step__number">{step.number}</span>
+					<h3>{step.title}</h3>
+					<p>{step.text}</p>
+				</article>
+			))}
+		</div>
+	</section>
+
+	<section class="section section--cream">
+		<div class="review-heading">
+			<SectionHeading align="left" eyebrow="Google reviews" title="Kind words, graciously shared." text="A couple of brief excerpts from reviews about bridal showers." />
+			<a class="button button--outline" href="https://maps.app.goo.gl/6dbn5ExU9MuMPyy57" target="_blank" rel="noreferrer">Read reviews on Google <span aria-hidden="true">↗</span></a>
+		</div>
+		<div class="quote-grid">
+			{testimonials.map((testimonial) => <QuoteCard {...testimonial} />)}
+		</div>
+	</section>
+
+	<section class="final-cta">
+		<p class="eyebrow">The beginning of a good thing</p>
+		<h2>Let’s create something unforgettable.</h2>
+		<p>Contact Josephine to ask about your event, decorations, and party rentals.</p>
+		<a class="button button--light" href="/contact/">Contact Josephine <span aria-hidden="true">↗</span></a>
+	</section>
+</BaseLayout>

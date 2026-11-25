@@ -1,0 +1,50 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { galleryItems } from '../data/site';
+---
+
+<BaseLayout
+	title="About Josephine Ishioye | Funky Events"
+	description="Meet Josephine Ishioye, event planner at Funky Events. Thoughtful event planning, decorations, and party rentals in Rhode Island."
+>
+	<section class="page-hero">
+		<div class="page-hero__inner">
+			<p class="eyebrow">A little heart behind the details</p>
+			<h1>Gathering is an art.<br /><em>Care is the secret.</em></h1>
+			<p class="page-hero__text">We make room for the big feelings, the small details, and the kind of moments people talk about long after the last song.</p>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="about-intro">
+			<div class="about-intro__photo">
+				<Image src={galleryItems[0].image} alt={galleryItems[0].alt} width={800} height={1050} format="webp" quality={80} loading="lazy" />
+			</div>
+			<div class="about-intro__copy">
+				<p class="eyebrow">Meet your event planner</p>
+				<h2>Josephine Ishioye.<br /><em>Here for your good moments.</em></h2>
+				<p>Josephine Ishioye is the event planner behind Funky Events, offering event decoration, event planning, and party rentals in Rhode Island and surrounding areas.</p>
+				<p>Contact Josephine to discuss the occasion and the event details that matter to you.</p>
+				<p class="about-signature">Josephine Ishioye · Event Planner</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--dark">
+		<SectionHeading eyebrow="What we believe" title="A good event feels like its people." text="Style matters. So does how the room feels, whether the timing flows, and if you had time to laugh with the people you invited." />
+		<div class="values-grid">
+			<article class="value-card"><span class="value-card__number">01</span><h3>Personal, always</h3><p>No two stories are alike. We shape every plan around your people, your priorities, and your own version of a good time.</p></article>
+			<article class="value-card"><span class="value-card__number">02</span><h3>Calm is a craft</h3><p>The behind-the-scenes work should feel steady and clear. We stay ahead of the details so you can stay in the moment.</p></article>
+			<article class="value-card"><span class="value-card__number">03</span><h3>Beauty with meaning</h3><p>We look for the thoughtful touches that tell your story, welcome your guests, and make the occasion feel like no other.</p></article>
+		</div>
+	</section>
+
+	<section class="final-cta">
+		<p class="eyebrow">A good first step</p>
+		<h2>Tell us what you’re dreaming of.</h2>
+		<p>We’ll listen, ask a few thoughtful questions, and see if we’re the right people to bring it to life.</p>
+		<a class="button button--light" href="/contact/">Meet your planner <span aria-hidden="true">↗</span></a>
+	</section>
+</BaseLayout>

@@ -1,0 +1,24 @@
+---
+interface Props {
+	quote: string;
+	name: string;
+	event: string;
+}
+
+const { quote, name, event } = Astro.props;
+---
+
+<figure class="quote-card">
+	<div class="quote-card__topline">
+		<div>
+			<p class="quote-card__source">Google review</p>
+			<p class="quote-card__event">{event}</p>
+		</div>
+		<div class="quote-card__stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+	</div>
+	<blockquote>“{quote}”</blockquote>
+	<figcaption>
+		<span class="quote-card__name">{name}</span>
+		<span class="quote-card__attribution">Google reviewer</span>
+	</figcaption>
+</figure>

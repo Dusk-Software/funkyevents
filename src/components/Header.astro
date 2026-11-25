@@ -1,0 +1,27 @@
+---
+import { navigation } from '../data/site';
+const { currentPath = '/' } = Astro.props;
+---
+
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="announcement-bar">Funky Events <span>Rhode Island & Surrounding Areas</span></div>
+<header class="site-header">
+	<a href="/" class="brand" aria-label="Funky Events home">
+		<span class="brand__wordmark">FUNKY EVENTS <span>DECORATIONS & PARTY RENTALS</span></span>
+	</a>
+	<details class="mobile-menu">
+		<summary aria-label="Toggle navigation"><span></span><span></span></summary>
+		<nav aria-label="Main navigation">
+			{navigation.map((item) => (
+				<a href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>{item.label}</a>
+			))}
+			<a href="/contact/" class="mobile-menu__cta">Let’s talk <span aria-hidden="true">↗</span></a>
+		</nav>
+	</details>
+	<nav class="desktop-nav" aria-label="Main navigation">
+		{navigation.map((item) => (
+			<a href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>{item.label}</a>
+		))}
+	</nav>
+	<a href="/contact/" class="header-cta">Let’s talk <span aria-hidden="true">↗</span></a>
+</header>
